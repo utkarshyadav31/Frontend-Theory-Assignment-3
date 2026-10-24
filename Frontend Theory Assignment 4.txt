@@ -1,0 +1,249 @@
+1. What is the difference between frontend and backend JavaScript?
+
+Frontend JavaScript	Backend JavaScript
+Runs in the user's browser.	Runs on the server using Node.js.
+Handles the user interface.	Handles server-side logic and data.
+Manipulates HTML and CSS.	Communicates with databases and APIs.
+Example: button click, form validation.	Example: login authentication, saving data.
+
+Example:
+- Frontend: Displaying an alert when a button is clicked.
+- Backend: Checking login credentials on a server.
+
+2. What is DOM?
+DOM (Document Object Model) is a programming interface that represents an HTML document as a tree of objects. JavaScript uses it to access and modify HTML elements, content, styles, and attributes.
+
+Example:
+<p id="demo">Hello</p>
+
+<script>
+document.getElementById("demo").innerHTML = "Welcome";
+</script>
+
+Output: The paragraph text changes from Hello to Welcome.
+
+3. What is an event in JavaScript?
+An event is an action or occurrence detected by the browser, such as a mouse click, key press, form submission, or page loading.
+
+Example:
+<button onclick="alert('Hello!')">Click Me</button>
+
+
+When the user clicks the button, an alert displays Hello!.
+
+Common events include:
+- click – when an element is clicked.
+- mouseover – when the mouse moves over an element.
+- keydown – when a keyboard key is pressed.
+- submit – when a form is submitted.
+
+4. What is the event loop in JavaScript?
+The event loop is a mechanism that allows JavaScript to handle asynchronous operations without blocking the main thread.
+
+It checks whether the call stack is empty and then schedules pending callbacks for execution.
+
+Example:
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 0);
+
+console.log("C");
+
+
+Output:
+A
+C
+B
+
+Reason: The setTimeout callback runs after the current synchronous code finishes, even when the delay is zero.
+
+5. What is hoisting in JavaScript?
+Hoisting is JavaScript's behavior of processing variable and function declarations before executing the code in their scope.
+
+Example:
+console.log(a);
+var a = 10;
+
+
+Output:
+undefined
+
+
+Reason: The declaration of a is hoisted, but its assignment to 10 is not.
+
+Important points:
+- var is hoisted and initialized with undefined.
+- let and const are hoisted but cannot be accessed before their declarations.
+- Function declarations can generally be called before their definition.
+
+6. What is event bubbling?
+Event bubbling is the process in which an event starts at the target element and then propagates upward through its parent elements.
+
+Example:
+<div onclick="alert('Parent clicked')">
+    <button onclick="alert('Button clicked')">
+        Click Me
+    </button>
+</div>
+
+
+When you click the button, the alerts appear in this order:
+1. Button clicked
+2. Parent clicked
+This happens because the click event bubbles from the button to the parent <div>.
+
+To stop bubbling, JavaScript provides event.stopPropagation().
+
+7. What is the difference between named, anonymous, and arrow functions?
+Named function	Anonymous function	Arrow function
+Has a function name.	Has no function name.	Uses the => syntax.
+Can be called by its name.	Often assigned to a variable or passed as a callback.	Often used for short functions and callbacks.
+Has its own this behavior based on how it is called.	Also has its own this behavior based on how it is called.	Inherits this from the surrounding scope.
+
+Examples:
+
+1. Named function
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3));
+
+
+Output: 5
+
+2. Anonymous function
+const add = function(a, b) {
+    return a + b;
+};
+
+console.log(add(2, 3));
+
+
+Output: 5
+
+3. Arrow function
+const add = (a, b) => a + b;
+
+console.log(add(2, 3));
+
+
+Output: 5
+
+8. Explain for...of and for...in loops.
+Both loops are used to iterate over data, but they work differently.
+
+for...of loop: Iterates over the values of an iterable, such as an array or string.
+let arr = [10, 20, 30];
+
+for (let value of arr) {
+    console.log(value);
+}
+
+
+Output:
+10
+20
+30
+
+
+for...in loop: Iterates over enumerable property keys, usually object keys.
+let student = {
+    name: "Rahul",
+    age: 20
+};
+
+for (let key in student) {
+    console.log(key);
+}
+
+
+Output:
+name
+age
+
+
+for...of	for...in
+Returns values.	Returns keys or property names.
+Commonly used with arrays and strings.	Commonly used with objects.
+Example: 10, 20, 30	Example: name, age
+
+9. Explain any five array methods in JavaScript.
+Array methods are built-in functions used to manipulate or process arrays.
+1. push()
+Adds an element to the end of an array.
+let arr = [10, 20];
+arr.push(30);
+
+console.log(arr);
+
+
+Output: [10, 20, 30]
+2. pop()
+Removes the last element of an array.
+let arr = [10, 20, 30];
+arr.pop();
+
+console.log(arr);
+
+
+Output: [10, 20]
+3. shift()
+Removes the first element of an array.
+let arr = [10, 20, 30];
+arr.shift();
+
+console.log(arr);
+
+
+Output: [20, 30]
+4. unshift()
+Adds an element to the beginning of an array.
+let arr = [20, 30];
+arr.unshift(10);
+
+console.log(arr);
+
+
+Output: [10, 20, 30]
+5. map()
+Creates a new array by applying a function to each element.
+let arr = [1, 2, 3];
+let result = arr.map(n => n * 2);
+
+console.log(result);
+
+
+Output: [2, 4, 6]
+
+Remember: push(), pop(), shift(), and unshift() modify the original array, while map() creates a new array.
+
+10. What is a callback function in JavaScript?
+A callback function is a function passed as an argument to another function so that it can be called later.
+
+Example:
+function greet(name, callback) {
+    console.log("Hello " + name);
+    callback();
+}
+
+function message() {
+    console.log("Welcome!");
+}
+
+greet("Rahul", message);
+
+
+Output:
+Hello Rahul
+Welcome!
+
+
+Explanation:
+1. message is passed as an argument to greet.
+2. greet prints Hello Rahul.
+3. callback() executes the message function.
+4. It prints Welcome!.
+Callbacks are commonly used in event handling, asynchronous programming, and array methods such as map() and filter().
